@@ -20,10 +20,6 @@ if selected_feat==features[0]:
         with st.spinner("Processing..."):
             is_mask_present = module.detect_save_predict_face_give_prediction(image)
             st.write(is_mask_present)
-    else:
-        st.error("Process btn is not pressed or picture is None.")
-        st.write("Process btn", process_btn)
-        st.write("Picture", session['picture'])
 
 else:
     image = camera_input_live()
