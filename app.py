@@ -1,7 +1,42 @@
-from src import module
+# from src import module
+# import streamlit as st
+# from camera_input_live import camera_input_live
+
+try:
+    import os
+    st.write("os module imported successfully")
+    
+    import cv2
+    st.write("cv2 module imported successfully")
+    
+    import numpy as np
+    st.write("numpy module imported successfully")
+    
+    import pandas as pd
+    st.write("pandas module imported successfully")
+    
+    import tensorflow as tf
+    st.write("tensorflow module imported successfully")
+    
+    from tensorflow import keras
+    st.write("keras module imported successfully")
+    
+    import matplotlib.pyplot as plt
+    st.write("matplotlib module imported successfully")
+    
+except ImportError as e:
+    st.write("ImportError: %s", e)
+except Exception as e:
+    st.write("Error: %s", e)
+
+
 import streamlit as st
+from src import module
 from camera_input_live import camera_input_live
 
+st.title("Mask Recognition App")
+
+# Your application logic here
 
 # os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 # making prediction on the live input
