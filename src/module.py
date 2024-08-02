@@ -1,8 +1,7 @@
-import os, cv2, logging
+import os, cv2
 import numpy as np
 
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
-logging.getLogger('tensorflow').setLevel(logging.ERROR)
 model_filepath = r"src\resources\model.h5"
 face_haarcascade_filepath = r"src\resources\haarcascade_frontalface_default.xml"
 
