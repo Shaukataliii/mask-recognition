@@ -30,11 +30,14 @@ def detect_save_predict_face_give_prediction(st_image):
     cv_image = convert_st_image_to_cv_image(st_image)
     face_images = get_all_face_images(cv_image)
 
-    for i,face in enumerate(face_images):
-        # save_cv_image(i, face)
-        face_mask_bool = is_face_mask_present(face)
-        print(face_mask_bool)
-        return face_mask_bool
+    if face_images:
+        for i,face in enumerate(face_images):
+            # save_cv_image(i, face)
+            face_mask_bool = is_face_mask_present(face)
+            print(face_mask_bool)
+            return face_mask_bool
+    else:
+        return "No face detected."
 
 def convert_st_image_to_cv_image(st_image):
     image_bytes = st_image.getvalue()
@@ -44,9 +47,10 @@ def convert_st_image_to_cv_image(st_image):
 def get_all_face_images(cv_image):
     face_images = []
     faces_coors = detect_all_faces(cv_image)
-    for x,y,w,h in faces_coors:
-        face_image = cv_image[y:y+h, x:x+w]
-        face_images.append(face_image)
+    if faces_coors:
+        for x,y,w,h in faces_coors:
+            face_image = cv_image[y:y+h, x:x+w]
+            face_images.append(face_image)
 
     return face_images
 
