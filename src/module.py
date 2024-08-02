@@ -5,8 +5,8 @@ from keras.models import load_model
 
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 cwd = os.getcwd()
-model_filepath = r"{}/src/resources/model.h5".format(cwd)
-face_haarcascade_filepath = r"{}/src/resources/haarcascade_frontalface_default.xml".format(cwd)
+model_filepath = f"{cwd}/src/resources/model.h5"
+face_haarcascade_filepath = f"{cwd}/src/resources/haarcascade_frontalface_default.xml"
 
 
 # def detect_camera_till_interupt():
