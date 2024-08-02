@@ -1,4 +1,5 @@
 import os, cv2
+import streamlit as st
 import numpy as np
 
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
@@ -87,7 +88,7 @@ def load_model():
     if os.path.exists(model_filepath):
         return load_model(model_filepath)
     else:
-        raise Exception(f"Model path doesn't exist: {model_filepath}")
+        st.write(f"Model path doesn't exist: {model_filepath}")
     
 def detect_faces_draw_rectangle(cv_image):
     detected_faces = detect_all_faces(cv_image)
