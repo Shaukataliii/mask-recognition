@@ -109,7 +109,7 @@ def stop_app_with_warning(warning):
 
 def load_mlmodel():
     if os.path.exists(model_filepath):
-        return load_model(model_filepath)
+        return load_model(filepath=model_filepath)
     else:
         stop_app_with_warning(f"Model path doesn't exist: {model_filepath}")
 
