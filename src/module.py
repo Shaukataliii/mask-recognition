@@ -51,7 +51,7 @@ def get_all_face_images(cv_image):
             face_images.append(face_image)
         return face_images
     else:
-        raise st.exception("No face detected.")
+        st.stop("No face detected.")
 
 def detect_all_faces(cv_image):
     detector = load_harcascade_classifier()
@@ -61,7 +61,7 @@ def load_harcascade_classifier():
     haarcascade_detector = cv2.CascadeClassifier(face_haarcascade_filepath)
     if haarcascade_detector.empty():
         st.error("Error loading Haar Cascade classifier")
-        raise st.exception("Haarcascade classifier is empty.")
+        st.stop("Haarcascade classifier is empty.")
     else:
         st.success("Haar Cascade classifier loaded successfully")
         return haarcascade_detector
