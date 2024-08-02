@@ -24,7 +24,6 @@
 #         st.image(image)
 
 #         with st.spinner("Processing..."):
-#             image = module.convert_st_image_to_cv_image(image)
 #             is_mask_present = module.detect_save_predict_face_give_prediction(image)
 #             st.write(is_mask_present)
 
