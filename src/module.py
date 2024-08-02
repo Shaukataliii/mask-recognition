@@ -30,14 +30,11 @@ def detect_save_predict_face_give_prediction(st_image):
     cv_image = convert_st_image_to_cv_image(st_image)
     face_images = get_all_face_images(cv_image)
 
-    if face_images:
-        for i,face in enumerate(face_images):
-            # save_cv_image(i, face)
-            face_mask_bool = is_face_mask_present(face)
-            print(face_mask_bool)
-            return face_mask_bool
-    else:
-        return "No face detected."
+    for i,face in enumerate(face_images):
+        # save_cv_image(i, face)
+        face_mask_bool = is_face_mask_present(face)
+        print(face_mask_bool)
+        return face_mask_bool
 
 def convert_st_image_to_cv_image(st_image):
     image_bytes = st_image.getvalue()
@@ -52,15 +49,22 @@ def get_all_face_images(cv_image):
         for x,y,w,h in faces_coors:
             face_image = cv_image[y:y+h, x:x+w]
             face_images.append(face_image)
-
-    return face_images
+        return face_images
+    else:
+        raise st.exception("No face detected.")
 
 def detect_all_faces(cv_image):
     detector = load_harcascade_classifier()
     return detector.detectMultiScale(image=cv_image, scaleFactor=1.1, minNeighbors=3)
 
 def load_harcascade_classifier():
-    return cv2.CascadeClassifier(face_haarcascade_filepath)
+    haarcascade_detector = cv2.CascadeClassifier(face_haarcascade_filepath)
+    if haarcascade_detector.empty():
+        st.error("Error loading Haar Cascade classifier")
+        raise st.exception("Haarcascade classifier is empty.")
+    else:
+        st.success("Haar Cascade classifier loaded successfully")
+        return haarcascade_detector
 
 def is_face_mask_present(captured_image):
     encoded_image = encode_cvimage(captured_image)
