@@ -2,8 +2,9 @@ import os, cv2
 import numpy as np
 
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
-model_filepath = r"src\resources\model.h5"
-face_haarcascade_filepath = r"src\resources\haarcascade_frontalface_default.xml"
+cwd = os.getcwd()
+model_filepath = r"{}\src\resources\model.h5".format(cwd)
+face_haarcascade_filepath = r"{}\src\resources\haarcascade_frontalface_default.xml".format(cwd)
 
 
 def convert_st_image_to_cv_image(st_image):
