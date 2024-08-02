@@ -51,7 +51,7 @@ def get_all_face_images(cv_image):
             face_images.append(face_image)
         return face_images
     else:
-        st.stop("No face detected.")
+        stop_app_with_warning("No face detected")
 
 def detect_all_faces(cv_image):
     detector = load_harcascade_classifier()
@@ -60,8 +60,8 @@ def detect_all_faces(cv_image):
 def load_harcascade_classifier():
     haarcascade_detector = cv2.CascadeClassifier(face_haarcascade_filepath)
     if haarcascade_detector.empty():
-        st.error("Error loading Haar Cascade classifier")
-        st.stop("Haarcascade classifier is empty.")
+        # st.error("Error loading Haar Cascade classifier")
+        stop_app_with_warning(f"Haarcascade classifier is empty. Path used: {face_haarcascade_filepath}")
     else:
         st.success("Haar Cascade classifier loaded successfully")
         return haarcascade_detector
@@ -103,11 +103,14 @@ def map_probability(value):
 #         cv2.rectangle(cv_image, (x,y), (x+w, y+h), (0,255,0), 3)
 #     return cv_image
 
+def stop_app_with_warning(warning):
+    st.warning(warning)
+    st.stop()
 
 def load_model():
     if os.path.exists(model_filepath):
         return load_model(model_filepath)
     else:
-        st.write(f"Model path doesn't exist: {model_filepath}")
+        stop_app_with_warning(f"Model path doesn't exist: {model_filepath}")
 
 model = load_model()
