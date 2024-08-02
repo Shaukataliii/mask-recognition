@@ -2,7 +2,9 @@ import streamlit as st
 import os
 from camera_input_live import camera_input_live
 
-st.write(os.getcwd())
+cwd = os.getcwd()
+st.write(cwd)
+st.write(os.listdir(cwd))
 from src import module
 # os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 # making prediction on the live input
