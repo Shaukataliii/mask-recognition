@@ -42,6 +42,7 @@ def detect_save_predict_face_give_prediction(st_image):
 def convert_st_image_to_cv_image(st_image):
     image_bytes = st_image.getvalue()
     cv_image = cv2.imdecode(np.frombuffer(image_bytes, np.uint8), cv2.IMREAD_GRAYSCALE)
+    st.image(cv_image, channels='GRAY')
     return cv_image
 
 def get_all_face_images(cv_image):
