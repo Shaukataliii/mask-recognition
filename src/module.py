@@ -1,6 +1,7 @@
 import os, cv2
 import streamlit as st
 import numpy as np
+from keras.models import load_model
 
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 cwd = os.getcwd()
@@ -11,6 +12,7 @@ face_haarcascade_filepath = r"{}\src\resources\haarcascade_frontalface_default.x
 def convert_st_image_to_cv_image(st_image):
     image_bytes = st_image.getvalue()
     cv_image = cv2.imdecode(np.frombuffer(image_bytes, np.uint8), cv2.IMREAD_GRAYSCALE)
+    st.write(type(cv_image))    # remove after testing
     return cv_image
 
 def detect_camera_till_interupt():
@@ -84,7 +86,6 @@ def detect_all_faces(cv_image):
     return detector.detectMultiScale(cv_image, 1.1, 3)
 
 def load_model():
-    from keras.models import load_model
     if os.path.exists(model_filepath):
         return load_model(model_filepath)
     else:
