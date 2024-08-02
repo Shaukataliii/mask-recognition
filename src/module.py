@@ -45,9 +45,10 @@ def convert_st_image_to_cv_image(st_image):
 def get_all_face_images(cv_image):
     face_images = []
     faces_coors = detect_all_faces(cv_image)
-    if faces_coors.size == 0:
+    if faces_coors.size != 0:
         for x,y,w,h in faces_coors:
             face_image = cv_image[y:y+h, x:x+w]
+            st.image(face_image, caption="Extracted face on which perdiction will be performed")
             face_images.append(face_image)
         return face_images
     else:
@@ -60,10 +61,8 @@ def detect_all_faces(cv_image):
 def load_harcascade_classifier():
     haarcascade_detector = cv2.CascadeClassifier(face_haarcascade_filepath)
     if haarcascade_detector.empty():
-        # st.error("Error loading Haar Cascade classifier")
         stop_app_with_warning(f"Haarcascade classifier is empty. Path used: {face_haarcascade_filepath}")
     else:
-        st.success("Haar Cascade classifier loaded successfully")
         return haarcascade_detector
 
 def is_face_mask_present(captured_image):
