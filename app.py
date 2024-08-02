@@ -19,11 +19,12 @@ if selected_feat==features[0]:
     session['picture'] = st.camera_input("Take Picture")
 
     if process_btn and session['picture'] is not None:
+        image = session['picture']
         st.write("Image in not none.")
-        st.image(session['picture'])
+        st.image(image)
 
         with st.spinner("Processing..."):
-            image = module.convert_st_image_to_cv_image(session['image'])
+            image = module.convert_st_image_to_cv_image(image)
             is_mask_present = module.detect_save_predict_face_give_prediction(image)
             st.write(is_mask_present)
 
