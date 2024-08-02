@@ -45,7 +45,7 @@ def convert_st_image_to_cv_image(st_image):
 def get_all_face_images(cv_image):
     face_images = []
     faces_coors = detect_all_faces(cv_image)
-    if faces_coors:
+    if faces_coors.size == 0:
         for x,y,w,h in faces_coors:
             face_image = cv_image[y:y+h, x:x+w]
             face_images.append(face_image)
