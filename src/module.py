@@ -1,6 +1,5 @@
 import os, cv2, logging
 import numpy as np
-import tensorflow as tf
 
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 logging.getLogger('tensorflow').setLevel(logging.ERROR)
